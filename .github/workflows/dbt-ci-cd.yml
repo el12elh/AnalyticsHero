@@ -11,7 +11,7 @@ on:
 jobs:
   dbt-stg:
     name: dbt build STG
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
 
     env:
