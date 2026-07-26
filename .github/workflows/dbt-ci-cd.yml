@@ -1,0 +1,72 @@
+name: dbt CI/CD
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  dbt-stg:
+    name: dbt build STG
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    env:
+      DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+      DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}
+      DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dbt Snowflake
+        run: pip install dbt-snowflake
+
+      - name: Install dbt dependencies
+        run: dbt deps --profiles-dir profiles
+
+      - name: Validate dbt connection
+        run: dbt debug --target stg --profiles-dir profiles
+
+      - name: Build and test STG
+        run: dbt build --target stg --profiles-dir profiles
+
+  dbt-prod:
+    name: dbt build PRD
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    env:
+      DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+      DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}
+      DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dbt Snowflake
+        run: pip install dbt-snowflake
+
+      - name: Install dbt dependencies
+        run: dbt deps --profiles-dir profiles
+
+      - name: Validate dbt connection
+        run: dbt debug --target prd --profiles-dir profiles
+
+      - name: Build and test PROD
+        run: dbt build --target prd --profiles-dir profiles
