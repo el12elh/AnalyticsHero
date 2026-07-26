@@ -40,7 +40,7 @@ jobs:
       - name: Build and test STG
         run: dbt build --target stg --profiles-dir profiles
 
-  dbt-prod:
+  dbt-prd:
     name: dbt build PRD
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -68,5 +68,5 @@ jobs:
       - name: Validate dbt connection
         run: dbt debug --target prd --profiles-dir profiles
 
-      - name: Build and test PROD
+      - name: Build and test PRD
         run: dbt build --target prd --profiles-dir profiles
