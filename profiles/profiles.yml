@@ -23,13 +23,13 @@ default:
       schema: SCH
       threads: 16
 
-    prod:
+    prd:
       type: snowflake
       account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
       user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
       password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}"
       role: ACCOUNTADMIN
-      database: DB_HERO_PROD
+      database: DB_HERO_PRD
       warehouse: COMPUTE_WH
       schema: SCH
       threads: 16
