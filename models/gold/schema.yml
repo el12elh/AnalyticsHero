@@ -5,5 +5,5 @@ models:
     - name: my_third_dbt_model
       description: "A starter dbt model"
       columns:
-          - name: cnt
-            description: "The count of rows in the table"
+          - name: sum
+            description: "The sum of the id column in the my_second_dbt_model table"

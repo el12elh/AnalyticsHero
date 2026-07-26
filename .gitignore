@@ -6,3 +6,4 @@ logs/
 dbt_internal_packages/
 .DS_Store
 dbt_cloud.yml
+profiles/.user.yml

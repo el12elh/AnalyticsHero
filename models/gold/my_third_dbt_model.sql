@@ -1,3 +1,3 @@
 {{ config(materialized='view') }}
-select count(*) as cnt
+select SUM(id) as sum
 from {{ ref('my_second_dbt_model') }}
