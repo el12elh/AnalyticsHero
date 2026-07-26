@@ -1,0 +1,9 @@
+
+version: 2
+
+models:
+    - name: my_third_dbt_model
+      description: "A starter dbt model"
+      columns:
+          - name: cnt
+            description: "The count of rows in the table"
