@@ -1,0 +1,35 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
+      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}"
+      role: ACCOUNTADMIN
+      database: DB_HERO_DEV
+      warehouse: COMPUTE_WH
+      schema: SCH
+      threads: 16
+
+    stg:
+      type: snowflake
+      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
+      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}"
+      role: ACCOUNTADMIN
+      database: DB_HERO_STG
+      warehouse: COMPUTE_WH
+      schema: SCH
+      threads: 16
+
+    prod:
+      type: snowflake
+      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
+      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}"
+      role: ACCOUNTADMIN
+      database: DB_HERO_PROD
+      warehouse: COMPUTE_WH
+      schema: SCH
+      threads: 16
