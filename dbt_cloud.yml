@@ -1,0 +1,12 @@
+version: "1"
+context:
+  active-host: "ug684.us1.dbt.com"
+  active-project: "70506183154339"
+projects:
+  - project-name: "Analytics_Hero"
+    project-id: "70506183154339"
+    account-name: "DBC"
+    account-id: "70506183151671"
+    account-host: "ug684.us1.dbt.com"
+    token-name: "cloud-cli-53a8"
+    token-value: "dbtu_0Ho7OmkmYfrsx_beMwF2Ui6JUG9ZdccWf4W8hpUV6buITBBz-c"
